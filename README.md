@@ -1,4 +1,4 @@
-<h1 align="center">AnuPpuccin</h1>
+<h1 align="center">AnuPpuccin Part 2</h1>
 <h3 align="center">Personal theme for <a href="https://obsidian.md">Obsidian</a> :3</h3><br>
 
 <p align="center"> <img src="assets/gh-preview.webp"> </p>
@@ -30,7 +30,7 @@ AnuPpuccin is licensed under the GPL-3.0 license which allows you to modify the 
 <summary><h2>Installation</h2></summary>
 <h3>Normal Installation</h3>
 Go to your theme folder (<code>.obsidian/themes</code>) and run:<br><br>
-<pre><code>git clone https://github.com/AnubisNekhet/AnuPpuccin.git</code></pre>
+<pre><code>git clone https://github.com/dudethatserin/AnuPpuccinPart2.git</code></pre>
 <h3>Updating</h3>
 Go to your AnuPuccin folder (<code>.obsidian/themes/Anuppuccin</code>) and run:<br><br>
 <pre><code>git pull</code></pre>
@@ -40,14 +40,14 @@ Clone the github repo and run <code>sass src/base.scss theme.css</code> in the r
 
 ## Community Contributions
 
-AnuPpuccin has a [Discussions](https://github.com/AnubisNekhet/AnuPpuccin/discussions/categories/snippets) page dedicated to snippets that add a personal touch to your obsidian setup. If you want to share your customizations, feel free to do so!
+AnuPpuccin has a [Discussions](https://github.com/dudethatserin/AnuPpuccinPart2/discussions/categories/snippets) page dedicated to snippets that add a personal touch to your obsidian setup. If you want to share your customizations, feel free to do so!
 
 ## Features
 
 ### Custom palette
 
 <p align="center"> <img src="assets/gh-colorscheme-preview.webp"> </p>
-The theme supports various palettes (5 in the base theme and even more if you use the <a href="https://github.com/AnubisNekhet/AnuPpuccin/blob/main/snippets/extended-colorschemes.css">extended colorschemes</a> snippet) which include many popular colorschemes such as Catppuccin and Dracula. These are heavily integrated into the theme as they are directly used to stylize various UI elements.
+The theme supports various palettes (5 in the base theme and even more if you use the <a href="https://github.com/dudethatserin/AnuPpuccinPart2/blob/main/snippets/extended-colorschemes.css">extended colorschemes</a> snippet) which include many popular colorschemes such as Catppuccin and Dracula. These are heavily integrated into the theme as they are directly used to stylize various UI elements.
 
 ### Layouts
 
