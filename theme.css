@@ -1,7 +1,8 @@
 /*===============================================================
-                           AnuPpuccin
+                        AnuPpuccin Part 2
                            ----------
                   Personal theme for Obsidian
+                      Originally By: anubisnekhet
 
 AnuPpuccin is licensed under the GPL-3.0 license which allows you
   to modify the code freely, however the Copyright and license
@@ -9,11 +10,9 @@ notices must be preserved in your CSS. If you redistribute a part
 of my code, please credit my theme in your CSS file, and specify
   which code you are using. Please keep my Buy Me a Coffee link
                   in your README if you do so.
-
-            https://www.buymeacoffee.com/anubisnekhet
 *===============================================================*/
 /* @settings
-name: AnuPpuccin
+name: AnuPpuccin Part 2
 id: anuppuccin-theme-settings
 settings:
 
@@ -1091,6 +1090,14 @@ settings:
     level: 1
     collapsed: true
   -
+    id: autohide-sidebar-tabs
+    title: Autohide Sidebar Tab Icons
+    type: class-toggle
+  -
+    id: hide-external-link
+    title: Hide External Link Icon
+    type: class-toggle
+  -
     id: anp-autohide-titlebar
     title: Autohide Title Bar
     type: class-toggle
@@ -1150,11 +1157,6 @@ settings:
   -
     id: anp-editor-font-lp
     title: Live Preview Editor Font
-    type: variable-text
-    default: Noto Sans
-  -
-    id: anp-editor-font-rv
-    title: Reading View Editor Font
     type: variable-text
     default: Noto Sans
 
@@ -2005,7 +2007,7 @@ settings:
   -
     id: anp-workspace-header
     title: Workspace
-    description: Background, Colorful Frame, Layout, Sidebar, Tabs, Translucency, etc.
+    description: Colorful Frame, Layout, Sidebar, Tabs, etc.
     type: heading
     level: 1
     collapsed: true
@@ -2075,10 +2077,6 @@ settings:
     type: heading
     level: 2
     collapsed: true
-  -
-    id: anp-custom-vault-toggle
-    title: Enable custom vault title
-    type: class-toggle
   -
     id: anp-file-icons
     title: Enable file icons
@@ -2373,22 +2371,6 @@ settings:
     id: anp-safari-tab-animated
     title: Enable WIP animated safari tabs
     type: class-toggle
-
-# Workspace :: Translucency
-
-  -
-    id: anp-translucency-header
-    title: Translucency
-    description: 
-    type: heading
-    level: 2
-    collapsed: true
-  -
-    id: anp-translucency-opacity
-    description: Drag to change background opacity
-    title: Window opacity
-    type: variable-number
-    default: 0.15
 
 # Workspace :: Workspace Layout
 
@@ -3250,10 +3232,6 @@ body.theme-dark {
   --font-text: var(--anp-editor-font-lp, var(--font-text-override)), var(--font-text-theme), var(--font-interface);
 }
 
-.markdown-preview-view {
-  --font-text: var(--anp-editor-font-rv, var(--font-text-override)), var(--font-text-theme), var(--font-interface);
-}
-
 /*-Highlighted gutter number-*/
 .cm-lineNumbers .cm-gutterElement.cm-active {
   color: var(--interactive-accent);
@@ -3627,6 +3605,11 @@ input.slider,
   display: none;
 }
 
+/* Tab fix for Desktop for 50/50 tabs on dark mode - tabs are unreadable without this */
+body.theme-dark .is-focused .workspace-tab-header {
+    color: #fff !important;
+}
+
 /*-Tab icons-*/
 .mod-left-split .workspace-tab-header.has-active-menu,
 .mod-right-split .workspace-tab-header.has-active-menu,
@@ -3709,50 +3692,6 @@ body {
 
 .anp-card-layout .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-leaf {
   background-color: var(--background-primary);
-}
-
-body.is-translucent {
-  background-color: transparent;
-  --workspace-background-translucent: rgba(var(--ctp-crust), var(--anp-translucency-opacity));
-}
-
-.is-translucent:not(.is-fullscreen) {
-  --nav-collapse-icon-color: rgba(var(--mono-rgb-100), 0.3);
-  --nav-collapse-icon-color-collapsed: rgba(var(--mono-rgb-100), 0.3);
-  --divider-color: rgba(var(--ctp-surface0), 0.15);
-}
-
-.is-translucent:not(.is-fullscreen) .workspace-ribbon.mod-left,
-.is-translucent:not(.is-fullscreen) .workspace-tabs,
-.is-translucent:not(.is-fullscreen) .mod-left-split .workspace-tab-header-container,
-.is-translucent:not(.is-fullscreen) .mod-right-split .workspace-tab-header-container,
-.is-translucent:not(.is-fullscreen) .mod-top .workspace-tab-header-container,
-.is-translucent:not(.is-fullscreen) .workspace-tabs .workspace-leaf,
-.is-translucent:not(.is-fullscreen) .workspace-ribbon.mod-left:before,
-.is-translucent:not(.is-fullscreen) .workspace-split.mod-root,
-.is-translucent:not(.is-fullscreen) .workspace-split.mod-root.mod-left-split .view-content,
-.is-translucent:not(.is-fullscreen) .view-header,
-.is-translucent:not(.is-fullscreen) .horizontal-main-container {
-  background-color: transparent;
-}
-.is-translucent:not(.is-fullscreen) .view-header-title-container:not(.mod-at-end):after {
-  background-image: none;
-}
-.is-translucent:not(.is-fullscreen) .workspace-tabs.mod-stacked .workspace-tab-header, .is-translucent:not(.is-fullscreen) .workspace-tabs.mod-stacked .view-header {
-  background-color: var(--background-primary);
-}
-
-.is-translucent .workspace {
-  background-color: transparent;
-}
-
-.is-translucent .workspace-split.mod-left-split.is-sidedock-collapsed .workspace-tabs,
-.is-translucent .workspace-split.mod-right-split.is-sidedock-collapsed .workspace-tabs {
-  visibility: hidden;
-}
-
-.is-translucent.anp-card-layout, .is-translucent.anp-border-layout {
-  --card-background-color: transparent;
 }
 
 .anp-autohide-titlebar:not(.is-mobile) {
@@ -4121,10 +4060,12 @@ body.anp-card-layout .side-dock-actions {
   padding: var(--size-4-2) var(--size-4-1) var(--size-4-3);
 }
 body.anp-card-layout .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-  border: none;
+  border: var(--tab-outline-width) solid var(--tab-outline-color);
+  border-bottom: none;
   margin: var(--anp-card-layout-padding, 10px);
   margin-bottom: 0;
-  background-color: transparent;
+  border-radius: var(--anp-card-radius, var(--radius-xl)) var(--anp-card-radius, var(--radius-xl)) 0 0;
+  background-color: var(--card-foreground-color);
 }
 body.anp-card-layout .workspace-ribbon.mod-left {
   margin-top: calc(var(--header-height) - 1px);
@@ -4255,19 +4196,13 @@ body.anp-border-layout .workspace .workspace-split.mod-left-split .workspace-tab
   border-left: var(--border-border-style);
 }
 body.anp-border-layout .workspace .workspace-split.mod-left-split .workspace-tabs:last-child .workspace-tab-container {
+  border-bottom-left-radius: var(--anp-border-radius, var(--radius-xl));
   border-bottom: var(--border-border-style);
 }
 body.anp-border-layout .workspace .workspace-split.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-container {
   border-top-left-radius: var(--anp-border-radius, var(--radius-xl));
   border-top: var(--border-border-style);
   border-left: var(--border-border-style);
-}
-body.anp-border-layout .workspace .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-  border-top: none;
-  background-color: var(--card-foreground-color);
-  border-bottom-left-radius: var(--anp-border-radius, var(--radius-xl));
-  border-left: var(--border-border-style);
-  border-bottom: var(--border-border-style);
 }
 body.anp-border-layout .workspace .workspace-split.mod-right-split {
   padding-bottom: var(--anp-border-bottom-padding, 20px);
@@ -4639,8 +4574,8 @@ Support me: https://buymeacoffee.com/AnubisNekhet
   --link-decoration-active: none;
 }
 
-.external-link,
-.external-link:hover {
+.hide-external-link .external-link,
+.hide-external-link .external-link:hover {
   background-image: none;
   padding-right: 0px;
 }
@@ -4650,6 +4585,60 @@ Support me: https://buymeacoffee.com/AnubisNekhet
 }
 .cm-s-obsidian span.cm-formatting-em, .cm-s-obsidian span.cm-em {
   color: var(--italic-color);
+}
+
+/* autohide tab titles */
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container,
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container * {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container * {
+  background-color: transparent !important;
+}
+
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container .workspace-tab-header-inner-icon,
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header.is-active .workspace-tab-header-inner,
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container .workspace-tab-header-inner::before {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container:hover .workspace-tab-header-inner-icon,
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header.is-active .workspace-tab-header-inner,
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container:hover .workspace-tab-header-inner::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container {
+  height: 10px;
+  transition: height 200ms ease-in;
+  position: relative;
+}
+
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container:hover {
+  height: var(--header-height);
+  background-color: var(--background) !important;
+}
+
+.autohide-sidebar-tabs .workspace-tabs:not(.mod-top) .workspace-tab-header-container::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+/* show external link */
+.show-external-link .external-link,
+.show-external-link .external-link:hover {
+  background-image: inherit !important;
+  padding-right: inherit !important;
 }
 
 /*-Footnote-*/
@@ -5225,9 +5214,9 @@ sup[data-footnote-id] {
   margin-block-end: var(--anp-header-margin-value);
 }
 
-.cm-header {
+/* .cm-header {
   display: inline-block;
-}
+} */
 
 .anp-editor-font-toggle .markdown-source-view:not(.is-live-preview) {
   --h1-font: var(--anp-editor-font);
@@ -5419,32 +5408,6 @@ table.dataview.table-view-table > tbody > tr:hover {
   width: var(--anp-table-width-pct);
   margin-left: calc(50% - var(--anp-table-width-pct) / 2);
   margin-right: calc(50% - var(--anp-table-width-pct) / 2);
-}
-
-/*-Custom folder title-*/
-.anp-custom-vault-toggle .nav-folder.mod-root > .nav-folder-title > .nav-folder-title-content {
-  font-size: 130%;
-  font-weight: bold;
-  text-align: center;
-  margin-left: 30px;
-}
-
-.anp-custom-vault-toggle .nav-folder.mod-root > .nav-folder-title > .nav-folder-title-content:before {
-  content: " ";
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' data-darkreader-inline-stroke='' style='--darkreader-inline-stroke:currentColor;'%3E%3Cpath d='m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' data-darkreader-inline-stroke='' style='--darkreader-inline-stroke:currentColor;'%3E%3Cpath d='m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  mask-size: contain;
-  background-size: contain;
-  text-align: center;
-  width: 26px;
-  height: 26px;
-  margin-left: -30px;
-  margin-top: -4px;
-  color: rgb(var(--ctp-yellow));
-  position: absolute;
-  background-color: rgb(var(--ctp-yellow));
 }
 
 /*-----------------------------------
@@ -6779,10 +6742,6 @@ None of the original code was used and the feature was implemented from scratch.
   background-color: var(--card-foreground-color, var(--background-primary));
 }
 
-.anp-floating-header.anp-custom-vault-toggle .nav-folder.mod-root > .nav-folder-title {
-  padding-top: 10px;
-}
-
 .anp-codeblock-numbers .HyperMD-codeblock-begin {
   counter-reset: line-numbers;
 }
@@ -6820,6 +6779,11 @@ None of the original code was used and the feature was implemented from scratch.
 
 .anp-file-icons .nav-file .nav-file-title[data-path] {
   align-items: center;
+}
+
+.anp-codeblock-edit-nowrap .ͼ1 .cm-lineWrapping {
+  word-wrap: normal !important;
+  white-space: none;
 }
 
 .anp-file-icons .nav-file .nav-file-title[data-path]::before {
@@ -6984,7 +6948,7 @@ None of the original code was used and the feature was implemented from scratch.
 
 .anp-rainbow-subfolder-color-toggle .nav-files-container .nav-folder.nav-folder .nav-folder,
 .anp-rainbow-subfolder-color-toggle [data-type=bookmarks] .tree-item .tree-item {
-  --rainbow-folder-color: inherit;
+  --rainbow-folder-color: inherit !important;
 }
 
 /*---------------------------------------------------------------
@@ -6992,14 +6956,21 @@ None of the original code was used and the feature was implemented from scratch.
 *---------------------------------------------------------------*/
 .anp-full-rainbow-color-toggle .nav-files-container > div > .nav-folder .nav-folder-title,
 .anp-full-rainbow-color-toggle .nav-files-container > div > .nav-folder .nav-file-title,
-.anp-full-rainbow-color-toggle .nav-files-container .collapse-icon svg.svg-icon,
-.anp-full-rainbow-color-toggle .tree-item-self .tree-item-icon {
+.anp-full-rainbow-color-toggle .nav-files-container .collapse-icon svg.svg-icon {
   color: var(--anp-full-rainbow-text-inverted, var(--background-primary));
   --icon-color: var(
   	--anp-full-rainbow-text-inverted,
   	var(--background-primary)
   );
 }
+
+body.theme-light .anp-full-rainbow-color-toggle .tree-item-self .tree-item-icon { /* light mode */
+  color: #375250 !important;
+  --icon-color: #375250 !important;
+}
+
+.anp-full-rainbow-color-toggle .tree-item-self .tree-item-icon {}
+
 .anp-full-rainbow-color-toggle.anp-rainbow-file-toggle .nav-files-container > div > .nav-folder-children > .nav-file .nav-file-title {
   color: var(--anp-full-rainbow-text-inverted, var(--background-primary));
 }
