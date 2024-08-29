@@ -1,3 +1,5 @@
+# This is on pause. I may pick this up in the future but unlikely as I don't use annuppuccin anymore.
+
 <h1 align="center">AnuPpuccin Part 2</h1>
 <h3 align="center">Personal theme for <a href="https://obsidian.md">Obsidian</a> :3</h3><br>
 
